@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Jogo</title>
+</head>
+<body>
+  <h1>Cadastro de Jogo</h1>
+  <form action="/cadastrarJogo" method="post">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo"><br>
+
+    <label for="descricao">Descrição:</label>
+    <textarea id="descricao" name="descricao"></textarea><br>
+
+    <label for="precoBase">Preço Base:</label>
+    <input type="number" id="precoBase" name="precoBase" step="0.01"><br>
+
+    <input type="submit" value="Cadastrar">
+  </form>
+</body>
+</html>
