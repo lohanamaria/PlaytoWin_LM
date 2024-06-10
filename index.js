@@ -37,24 +37,7 @@ app.post('/cadastrarJogo', async (req, res) => {
   }
 }
 
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
-});
 
-app.post("usuarios/novo", async (req, res) => { 
-const nickname = req.body.nickname;
-const nome = reg.body.nome;
-
-const dadosUsuario = { 
-nickname,
-nome,
-
-  };
-const usuario = Usuario.create(dadosUsuario);
-
-res.send("Usuário inserido sob o id + usuario" + usuario.id);
-});
-         
 const express = require("express");
 app.use(
 
@@ -75,8 +58,37 @@ res.render(`formJogo`);
 });
 
 app.post("/usuarios", async (req, res) =>
-  res.render(´usuarios´);
+  const usuarios  = await Usuario.findAll({raw:true})
+  res.render(´usuarios´, {usuarios});
 });
+
+
+app.post("usuarios/novo", async (req, res) => { 
+const nickname = req.body.nickname;
+const nome = reg.body.nome;
+
+const dadosUsuario = { 
+nickname,
+nome,
+
+  };
+const usuario = Usuario.create(dadosUsuario);
+
+res.send("Usuário inserido sob o id + usuario" + usuario.id);
+});
+
+app.get("/usuarios/:id/atualizar", (req, res) =>
+  { 
+    const id = req.params.id;
+    const usuario = Usuario.findByPk(id, {raw:true});
+    res.render("formUsuario", { usuario });   
+  } )
+
+app.listen(8000, () => { 
+console.log("Server rodando na porta 8000!");
+
+});
+
 conn.
 sync()
 then(() => {
@@ -87,8 +99,3 @@ then(() => {
 console.log("Erro!" + err) 
 
 })
-
-app.listen(8000, () => { 
-console.log("Server rodando na porta 8000!");
-
-});
