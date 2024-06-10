@@ -8,6 +8,13 @@ const Conquista = require('./models/Conquista');
 
 const app = express();
 
+app.engine("handlebars", handlebars.engine());
+app.set("view engine", "handlebars");
+
+//app.use(express.unlercoad({unlercoad: true}));
+//app.use(express.json());
+//app.use("/")
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
@@ -60,9 +67,16 @@ app.use(express.json());
 const app = express();
 
 app.get("/usuarios/novo", (req, res) => {
-res.sendFile(`${__dirname}/views/formUsuario.html`);
+res.render(`${__dirname}´formUsuario`);
 });
 
+app.get("/", (req, res) => {
+res.render(`formJogo`);
+});
+
+app.post("/usuarios", async (req, res) =>
+  res.render(´usuarios´);
+});
 conn.
 sync()
 then(() => {
